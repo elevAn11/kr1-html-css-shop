@@ -84,19 +84,36 @@ a:focus-visible {
   outline-offset: 3px;
 }
 
+/* Блок button с модификаторами */
+
 .button {
   display: inline-block;
   padding: var(--space-sm) var(--space-md);
-  color: var(--color-white);
-  background-color: var(--color-primary);
-  text-decoration: none;
   border: none;
   border-radius: var(--radius-sm);
+  font: inherit;
+  text-decoration: none;
   cursor: pointer;
 }
 
-.button:hover {
+.button--primary {
+  color: var(--color-white);
+  background-color: var(--color-primary);
+}
+
+.button--primary:hover {
   background-color: var(--color-primary-dark);
+}
+
+.button--secondary {
+  color: var(--color-primary);
+  background-color: transparent;
+  border: 1px solid var(--color-primary);
+}
+
+.button--secondary:hover {
+  color: var(--color-white);
+  background-color: var(--color-primary);
 }
 
 .button:focus-visible {
@@ -104,41 +121,32 @@ a:focus-visible {
   outline-offset: 3px;
 }
 
-.button:disabled {
+.button:disabled,
+.button--disabled {
   opacity: 0.6;
   cursor: not-allowed;
 }
 
-/*
-  Ограничиваем ширину содержимого шапки,
-  чтобы оно не растягивалось слишком сильно на широких экранах.
-*/
+/* ===============================
+   4. Шапка сайта и навигация
+   =============================== */
+
 .site-header {
+  background-color: var(--color-surface);
+}
+
+.site-header__inner {
   max-width: var(--container-width);
   margin: 0 auto;
+  padding: var(--space-lg);
 }
 
-/*
-  Оформляем текстовый логотип.
-*/
-.site-logo {
-  font-weight: bold;
-  text-decoration: none;
+.site-header__logo {
+  font-weight: 700;
   color: var(--color-text);
+  text-decoration: none;
 }
 
-/*
-  Убираем стандартные отступы и маркеры списка навигации.
-*/
-.site-nav__list {
-  padding: 0;
-  margin: var(--space-md) 0 0;
-  list-style: none;
-}
-
-/*
-  Добавляем расстояние между пунктами меню.
-*/
 .site-nav__list {
   display: flex;
   flex-wrap: wrap;
@@ -150,10 +158,7 @@ a:focus-visible {
   list-style: none;
 }
 
-/*
-  Оформляем ссылки меню.
-*/
-.site-nav__list a {
+.site-nav__link {
   display: inline-block;
   padding: var(--space-sm) var(--space-md);
   color: var(--color-primary);
@@ -161,13 +166,23 @@ a:focus-visible {
   border-radius: var(--radius-sm);
 }
 
-.site-nav__list a:hover {
+.site-nav__link:hover {
+  color: var(--color-white);
+  background-color: var(--color-primary);
+}
+
+.site-nav__link:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 3px;
+}
+
+.site-nav__link--active {
   color: var(--color-white);
   background-color: var(--color-primary);
 }
 
 /* ===============================
-   4. Компоненты страницы
+   5. Компоненты страницы
    =============================== */
 
 .hero {
@@ -191,24 +206,46 @@ a:focus-visible {
   display: flex;
   flex-direction: column;
   gap: var(--space-sm);
-  margin-bottom: 0;
   padding: var(--space-md);
   border: 1px solid var(--color-border);
   border-radius: var(--radius-md);
   background-color: var(--color-bg);
 }
 
-.product-card .button {
-  margin-top: auto;
-  align-self: flex-start;
-}
-
 .product-card:hover {
   border-color: var(--color-primary);
 }
 
-.product-card h3 {
-  margin-top: 0;
+.product-card--featured {
+  border-color: var(--color-primary);
+}
+
+.product-card--discount {
+  border-color: var(--color-danger);
+}
+
+.product-card__title {
+  margin: 0;
+  color: var(--color-text);
+}
+
+.product-card__description {
+  margin: 0;
+  color: var(--color-muted);
+}
+
+.product-card__price {
+  margin: 0;
+  font-weight: 700;
+}
+
+.product-card--discount .product-card__price {
+  color: var(--color-danger);
+}
+
+.product-card__button {
+  margin-top: auto;
+  align-self: flex-start;
 }
 
 .aside-info {
@@ -220,7 +257,7 @@ a:focus-visible {
 }
 
 /* ===============================
-   5. Форма и модальное окно
+   6. Форма и модальное окно
    =============================== */
 
 .order-dialog {
@@ -234,18 +271,22 @@ a:focus-visible {
   background-color: rgba(0, 0, 0, 0.5);
 }
 
-.form-field {
+.order-dialog__title {
+  margin-top: 0;
+}
+
+.order-form__field {
   margin-bottom: var(--space-md);
 }
 
-.form-field label {
+.order-form__label {
   display: block;
   margin-bottom: var(--space-xs);
 }
 
-.form-field input,
-.form-field select,
-.form-field textarea {
+.order-form__input,
+.order-form__select,
+.order-form__textarea {
   width: 100%;
   padding: 10px 12px;
   border: 1px solid var(--color-border);
@@ -253,31 +294,31 @@ a:focus-visible {
   font: inherit;
 }
 
-.form-field input[type="checkbox"] {
+.order-form__field--checkbox input[type="checkbox"] {
   width: auto;
 }
 
-.form-field small {
+.order-form__label small {
   display: block;
   margin-top: var(--space-xs);
   color: var(--color-muted);
 }
 
-.form-field input:hover,
-.form-field select:hover,
-.form-field textarea:hover {
+.order-form__input:hover,
+.order-form__select:hover,
+.order-form__textarea:hover {
   border-color: var(--color-primary);
 }
 
-.form-field input:focus-visible,
-.form-field select:focus-visible,
-.form-field textarea:focus-visible,
-.form-actions button:focus-visible {
+.order-form__input:focus-visible,
+.order-form__select:focus-visible,
+.order-form__textarea:focus-visible,
+.order-form__actions button:focus-visible {
   outline: 2px solid var(--color-primary);
   outline-offset: 3px;
 }
 
-.order-form:focus-within .form-field:not(:focus-within) {
+.order-form:focus-within .order-form__field:not(:focus-within) {
   opacity: 0.45;
   pointer-events: none;
 }
@@ -286,7 +327,7 @@ a:focus-visible {
   border-color: var(--color-danger);
 }
 
-.form-actions {
+.order-form__actions {
   display: flex;
   gap: var(--space-sm);
   margin-top: var(--space-lg);
@@ -300,6 +341,10 @@ a:focus-visible {
   background-color: var(--color-success-bg);
 }
 
+/* ===============================
+   7. Хлебные крошки и служебные стили
+   =============================== */
+
 .breadcrumbs {
   max-width: var(--container-width);
   margin: 0 auto var(--space-md);
@@ -307,11 +352,11 @@ a:focus-visible {
   color: var(--color-muted);
 }
 
-.breadcrumbs a {
+.breadcrumbs__link {
   color: var(--color-primary);
 }
 
-.breadcrumbs span::before {
+.breadcrumbs__current::before {
   content: " / ";
   color: var(--color-muted);
 }
@@ -324,6 +369,10 @@ html {
   outline: 2px dashed var(--color-primary);
   outline-offset: 4px;
 }
+
+/* ===============================
+   8. Сетки: товары и каталог
+   =============================== */
 
 .products-grid {
   display: grid;
