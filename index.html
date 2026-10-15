@@ -30,6 +30,12 @@
               Популярные товары
             </a>
           </li>
+          <li class="site-nav__item">
+            <a class="site-nav__link" href="#reviews">Отзывы</a>
+          </li>
+          <li class="site-nav__item">
+            <a class="site-nav__link" href="#faq">Вопросы и ответы</a>
+          </li>
         </ul>
       </nav>
     </div>
@@ -103,6 +109,113 @@
       </div>
     </section>
 
+    <section class="section reviews" id="reviews" aria-labelledby="reviews-title">
+      <h2 id="reviews-title">Отзывы покупателей</h2>
+
+      <p class="reviews__summary">
+        <span class="reviews__score">4,7</span>
+        <span>средняя оценка по 3 отзывам из 5</span>
+      </p>
+
+      <ul class="reviews__list">
+        <li>
+          <article class="review-card review-card--positive">
+            <p class="review-card__rating">
+              <span aria-hidden="true">★★★★★</span>
+              <span class="visually-hidden">Оценка: 5 из 5</span>
+            </p>
+            <p class="review-card__text">
+              Заказ оформили за пару минут, менеджер перезвонил в тот же день.
+              Товар соответствует описанию.
+            </p>
+            <footer class="review-card__author">
+              Анна К.
+              <span class="review-card__meta">
+                · <time datetime="2026-09-12">12 сентября 2026</time>
+              </span>
+            </footer>
+          </article>
+        </li>
+
+        <li>
+          <article class="review-card review-card--positive">
+            <p class="review-card__rating">
+              <span aria-hidden="true">★★★★★</span>
+              <span class="visually-hidden">Оценка: 5 из 5</span>
+            </p>
+            <p class="review-card__text">
+              Удобный каталог и понятная форма заявки. Доставка пришла
+              раньше срока.
+            </p>
+            <footer class="review-card__author">
+              Игорь М.
+              <span class="review-card__meta">
+                · <time datetime="2026-09-28">28 сентября 2026</time>
+              </span>
+            </footer>
+          </article>
+        </li>
+
+        <li>
+          <article class="review-card review-card--critical">
+            <p class="review-card__rating">
+              <span aria-hidden="true">★★★★☆</span>
+              <span class="visually-hidden">Оценка: 4 из 5</span>
+            </p>
+            <p class="review-card__text">
+              Всё хорошо, но хотелось бы больше фотографий товаров
+              в карточках.
+            </p>
+            <footer class="review-card__author">
+              Мария С.
+              <span class="review-card__meta">
+                · <time datetime="2026-10-03">3 октября 2026</time>
+              </span>
+            </footer>
+          </article>
+        </li>
+      </ul>
+    </section>
+
+    <section class="section faq" id="faq" aria-labelledby="faq-title">
+      <h2 id="faq-title">Частые вопросы</h2>
+
+      <div class="faq__list">
+        <details class="faq__item" name="faq">
+          <summary class="faq__question">Как оформить заказ?</summary>
+          <p class="faq__answer">
+            Нажмите кнопку «Заказать» в карточке товара, заполните форму
+            в открывшемся окне и отправьте заявку. Менеджер свяжется с вами
+            в выбранную дату.
+          </p>
+        </details>
+
+        <details class="faq__item" name="faq">
+          <summary class="faq__question">Сколько занимает доставка?</summary>
+          <p class="faq__answer">
+            Обычно от 2 до 5 рабочих дней в зависимости от региона.
+            Точные сроки менеджер сообщит при подтверждении заявки.
+          </p>
+        </details>
+
+        <details class="faq__item" name="faq">
+          <summary class="faq__question">Можно ли вернуть товар?</summary>
+          <p class="faq__answer">
+            Да, в течение 14 дней после получения, если товар не был
+            в использовании и сохранён товарный вид.
+          </p>
+        </details>
+
+        <details class="faq__item" name="faq">
+          <summary class="faq__question">Как связаться с магазином?</summary>
+          <p class="faq__answer">
+            Телефон и e-mail указаны на странице
+            <a href="contacts.html">«Контакты»</a>.
+          </p>
+        </details>
+      </div>
+    </section>
+
     <aside class="aside-info">
       <h2>Информация для студентов</h2>
       <p>
@@ -118,110 +231,158 @@
     <p>Дисциплина: Фронтенд и бэкенд разработка</p>
   </footer>
 
-  <dialog class="order-dialog" id="order-dialog" aria-labelledby="order-dialog-title">
-    <h2 class="order-dialog__title" id="order-dialog-title">Оформление заявки</h2>
-
-    <form class="order-form" id="order-form" action="#" method="post" novalidate>
-      <input id="selected-product" name="selected-product" type="hidden">
-
-      <div class="order-form__field">
-        <label class="order-form__label" for="order-name">Имя</label>
-        <input
-          class="order-form__input"
-          id="order-name"
-          name="name"
-          type="text"
-          placeholder="Введите ваше имя"
-          minlength="2"
-          autocomplete="given-name"
-          required
-        >
+  <dialog
+    class="order-dialog"
+    id="order-dialog"
+    aria-labelledby="order-dialog-title"
+    aria-describedby="order-dialog-product"
+  >
+    <div class="order-dialog__header">
+      <div>
+        <h2 class="order-dialog__title" id="order-dialog-title">Оформление заявки</h2>
+        <p class="order-dialog__subtitle">
+          Товар: <strong id="order-dialog-product">не выбран</strong>
+        </p>
       </div>
 
-      <div class="order-form__field">
-        <label class="order-form__label" for="order-email">E-mail</label>
-        <input
-          class="order-form__input"
-          id="order-email"
-          name="email"
-          type="email"
-          placeholder="example@mail.ru"
-          autocomplete="email"
-          required
-        >
-      </div>
+      <button
+        class="button button--ghost button--icon order-dialog__close"
+        type="button"
+        data-close-dialog
+        aria-label="Закрыть окно"
+      >
+        <span aria-hidden="true">✕</span>
+      </button>
+    </div>
 
-      <div class="order-form__field">
-        <label class="order-form__label" for="order-phone">Телефон</label>
-        <input
-          class="order-form__input"
-          id="order-phone"
-          name="phone"
-          type="tel"
-          inputmode="tel"
-          placeholder="+7 (900) 000-00-00"
-          pattern="^\+7 \(\d{3}\) \d{3}-\d{2}-\d{2}$"
-          required
-        >
-        <small>Формат: +7 (900) 000-00-00</small>
-      </div>
+    <div class="order-dialog__body">
+      <form class="order-form" id="order-form" action="#" method="post" novalidate>
+        <input id="selected-product" name="selected-product" type="hidden">
 
-      <div class="order-form__field">
-        <label class="order-form__label" for="order-date">Дата связи</label>
-        <input
-          class="order-form__input"
-          id="order-date"
-          name="date"
-          type="date"
-        >
-      </div>
+        <div class="order-form__summary" id="order-form-summary" role="alert" hidden></div>
 
-      <div class="order-form__field">
-        <label class="order-form__label" for="order-topic">Тема заявки</label>
-        <select class="order-form__select" id="order-topic" name="topic" required>
-          <option value="">Выберите тему</option>
-          <option value="product">Заказ товара</option>
-          <option value="consultation">Консультация</option>
-          <option value="delivery">Доставка</option>
-        </select>
-      </div>
+        <p class="order-form__note">
+          Обязательные поля отмечены звёздочкой (<span class="order-form__required">*</span>).
+        </p>
 
-      <div class="order-form__field">
-        <label class="order-form__label" for="order-comment">Комментарий</label>
-        <textarea
-          class="order-form__textarea"
-          id="order-comment"
-          name="comment"
-          rows="4"
-          placeholder="Укажите дополнительную информацию"
-        ></textarea>
-      </div>
-
-      <div class="order-form__field order-form__field--checkbox">
-        <label>
+        <div class="order-form__field">
+          <label class="order-form__label" for="order-name">
+            Имя <span class="order-form__required" aria-hidden="true">*</span>
+          </label>
           <input
-            id="order-agreement"
-            name="agreement"
-            type="checkbox"
+            class="order-form__input"
+            id="order-name"
+            name="name"
+            type="text"
+            placeholder="Введите ваше имя"
+            minlength="2"
+            autocomplete="given-name"
+            autofocus
             required
           >
-          Я согласен на обработку данных
-        </label>
-      </div>
+          <p class="order-form__error" id="order-name-error" hidden></p>
+        </div>
 
-      <div class="order-form__actions">
-        <button class="button button--secondary" type="button" id="close-order-dialog">
-          Закрыть
-        </button>
-        <button class="button button--primary" type="submit">
-          Отправить заявку
-        </button>
-      </div>
-    </form>
+        <div class="order-form__field">
+          <label class="order-form__label" for="order-email">
+            E-mail <span class="order-form__required" aria-hidden="true">*</span>
+          </label>
+          <input
+            class="order-form__input"
+            id="order-email"
+            name="email"
+            type="email"
+            placeholder="example@mail.ru"
+            autocomplete="email"
+            required
+          >
+          <p class="order-form__error" id="order-email-error" hidden></p>
+        </div>
+
+        <div class="order-form__field">
+          <label class="order-form__label" for="order-phone">
+            Телефон <span class="order-form__required" aria-hidden="true">*</span>
+          </label>
+          <input
+            class="order-form__input"
+            id="order-phone"
+            name="phone"
+            type="tel"
+            inputmode="tel"
+            placeholder="+7 (900) 000-00-00"
+            pattern="^\+7 \(\d{3}\) \d{3}-\d{2}-\d{2}$"
+            autocomplete="tel"
+            aria-describedby="order-phone-hint"
+            required
+          >
+          <span class="order-form__hint" id="order-phone-hint">Формат: +7 (900) 000-00-00</span>
+          <p class="order-form__error" id="order-phone-error" hidden></p>
+        </div>
+
+        <div class="order-form__field">
+          <label class="order-form__label" for="order-date">Дата связи</label>
+          <input
+            class="order-form__input"
+            id="order-date"
+            name="date"
+            type="date"
+          >
+        </div>
+
+        <div class="order-form__field">
+          <label class="order-form__label" for="order-topic">
+            Тема заявки <span class="order-form__required" aria-hidden="true">*</span>
+          </label>
+          <select class="order-form__select" id="order-topic" name="topic" required>
+            <option value="">Выберите тему</option>
+            <option value="product">Заказ товара</option>
+            <option value="consultation">Консультация</option>
+            <option value="delivery">Доставка</option>
+          </select>
+          <p class="order-form__error" id="order-topic-error" hidden></p>
+        </div>
+
+        <div class="order-form__field">
+          <label class="order-form__label" for="order-comment">Комментарий</label>
+          <textarea
+            class="order-form__textarea"
+            id="order-comment"
+            name="comment"
+            rows="4"
+            placeholder="Укажите дополнительную информацию"
+          ></textarea>
+        </div>
+
+        <div class="order-form__field order-form__field--checkbox">
+          <label for="order-agreement">
+            <input
+              id="order-agreement"
+              name="agreement"
+              type="checkbox"
+              required
+            >
+            <span>
+              Я согласен на обработку данных
+              <span class="order-form__required" aria-hidden="true">*</span>
+            </span>
+          </label>
+          <p class="order-form__error" id="order-agreement-error" hidden></p>
+        </div>
+
+        <div class="order-form__actions">
+          <button class="button button--secondary" type="button" data-close-dialog>
+            Закрыть
+          </button>
+          <button class="button button--primary" type="submit">
+            Отправить заявку
+          </button>
+        </div>
+      </form>
+    </div>
   </dialog>
 
-  <p class="success-message" id="success-message" hidden>
-    Форма успешно отправлена!
+  <p class="success-message" id="success-message" role="status" tabindex="-1" hidden>
+    Форма успешно отправлена! Мы свяжемся с вами в ближайшее время.
   </p>
 </body>
 </html>
